@@ -1,6 +1,23 @@
 # Changelog
 
 
+### 20.0.0
+
+- database migration
+- upgrade deps
+
+
+### 2.0.0
+
+- compat nc20
+
+
+### 1.4.2
+
+- compat nc19
+- error logs on missing Provider Options
+
+
 ### 1.4.1
 
 - adding ./occ fulltextsearch:document:status

@@ -141,6 +141,7 @@ class Test extends ACommandBase {
 	 * @param InputInterface $input
 	 * @param OutputInterface $output
 	 *
+	 * @return int
 	 * @throws Exception
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
@@ -186,6 +187,8 @@ class Test extends ACommandBase {
 		}
 
 		$this->output($output, '', true);
+
+		return 0;
 	}
 
 
@@ -459,6 +462,26 @@ class Test extends ACommandBase {
 		$this->search(
 			$output, $testPlatform, $testProvider, $access, '-document is a simple test',
 			[]
+		);
+		$this->search(
+			$output, $testPlatform, $testProvider, $access, 'document is a simple +test +testing',
+			[TestService::DOCUMENT_TYPE_SIMPLE]
+		);
+		$this->search(
+			$output, $testPlatform, $testProvider, $access, 'document is a simple +test -testing',
+			[]
+		);
+		$this->search(
+			$output, $testPlatform, $testProvider, $access, 'document is a +simple -test -testing',
+			[]
+		);
+		$this->search(
+			$output, $testPlatform, $testProvider, $access, '+document is a simple -test -testing',
+			[TestService::DOCUMENT_TYPE_LICENSE]
+		);
+		$this->search(
+			$output, $testPlatform, $testProvider, $access, 'document is a +simple -license +testing',
+			[TestService::DOCUMENT_TYPE_SIMPLE]
 		);
 	}
 
